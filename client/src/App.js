@@ -127,7 +127,7 @@ function App() {
     <div className="App">
       {!isVerified ? (
         <>
-          <h1>Welcome</h1>
+          <h1>Welcome to AUC Tutor</h1>
           {isEmailSent ? (
             renderVerificationForm()
           ) : (

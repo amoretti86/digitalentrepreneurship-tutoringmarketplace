@@ -1,161 +1,241 @@
-/* Import Google Fonts */
+/* Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
+
+/* Base layout fix for scrolling */
 body {
-    background-color: #ffe6f2; /* Soft pink background */
-    font-family: 'Poppins', sans-serif;
-    color: #5a1a5b;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  background-color: #f4f6f8; /* soft gray background */
+  font-family: 'Poppins', sans-serif;
+  color: #1f2937;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* align to top, not centered */
+  overflow-y: auto; /* enable vertical scrolling */
 }
 
-.App {
-    text-align: center;
-    background: white;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
+/* Main Dashboard Container */
+.dashboard {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
-h1 {
-    font-size: 24px;
-    font-weight: 600;
-    color: #ff4d94; /* Bright pink */
-    margin-bottom: 20px;
+/* Headings */
+h1, h2, h3 {
+  color: #0f172a; /* dark slate */
+  font-weight: 600;
+  margin-bottom: 12px;
 }
 
-/* ADDED: h2 heading style for "Verify Your Email" and dashboard headings */
 h2 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #ff4d94; /* Bright pink */
-    margin-bottom: 15px;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 8px;
 }
 
-/* ADDED: h3 heading style for "Hello, [name]!" in dashboard */
-h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #ff4d94; /* Bright pink */
-    margin-bottom: 10px;
+/* Topbar */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
 }
 
-/* Form Styling */
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.sub {
+  color: #6b7280; /* muted gray text */
+  font-size: 14px;
 }
 
-label {
-    font-size: 14px;
-    font-weight: 600;
-    margin: 10px 0 5px;
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-input {
-    width: 90%;
-    padding: 12px;
-    border: 2px solid #ff99c8;
-    border-radius: 10px;
-    font-size: 14px;
-    outline: none;
-    transition: all 0.3s ease-in-out;
+.tabs button {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-input:focus {
-    border-color: #ff4d94;
-    box-shadow: 0 0 8px rgba(255, 77, 148, 0.5);
+.tabs button:hover {
+  background: #e2e8f0;
 }
 
-/* Button Styling */
+.tabs .active {
+  background: #2563eb; /* blue accent */
+  color: white;
+  border-color: #2563eb;
+}
+
+/* Cards */
+.card {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Chips (subject buttons) */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.chip {
+  border: 1px solid #cbd5e1;
+  border-radius: 9999px;
+  padding: 6px 12px;
+  background: #f8fafc;
+  color: #334155;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chip:hover {
+  background: #e2e8f0;
+}
+
+.chip.selected {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+/* Buttons */
 button {
-    background: linear-gradient(135deg, #ff66b2, #ff3385);
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    margin-top: 15px;
-    width: 100%;
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 button:hover {
-    background: linear-gradient(135deg, #ff3385, #ff66b2);
-    transform: scale(1.05);
+  background: #1e40af; /* darker blue */
 }
 
-/* Message Styling */
-.success {
-    color: #00c851;
-    font-weight: bold;
-    margin-top: 15px;
-}
-
-.error {
-    color: #ff4444;
-    font-weight: bold;
-    margin-top: 15px;
-}
-
-/* ADDED: Generic message class for status messages */
-.message {
-    font-weight: bold;
-    margin-top: 15px;
-}
-
-/* ADDED: Dashboard Styles Section - Begin */
-/* Dashboard container */
-.dashboard {
-    text-align: center;
-}
-
-/* User greeting section with bottom border */
-.user-greeting {
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #ff99c8;
-}
-
-/* Styling for the email display in user greeting */
-.user-greeting p {
-    color: #5a1a5b;
-    font-size: 14px;
-}
-
-/* Main content area of dashboard */
-.dashboard-content {
-    min-height: 60px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    color: #5a1a5b;
-}
-
-/* Special styling for logout button - red gradient */
+/* Logout Button (secondary style) */
 .logout-btn {
-    background: linear-gradient(135deg, #ff4444, #cc0000);
+  background: #64748b; /* slate gray */
 }
 
-/* Hover effect for logout button */
 .logout-btn:hover {
-    background: linear-gradient(135deg, #cc0000, #ff4444);
+  background: #475569;
 }
-/* ADDED: Dashboard Styles Section - End */
 
-.topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-.sub { color: #6b7280; }
-.tabs { display: flex; gap: 8px; margin-bottom: 12px; }
-.tabs button { padding: 8px 12px; border-radius: 8px; border: 1px solid #e5e7eb; background: #fff; }
-.tabs .active { background: #111827; color: #fff; border-color: #111827; }
-.card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 12px; background: #fff; }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
-.chip { border: 1px solid #e5e7eb; border-radius: 9999px; padding: 6px 10px; background: #fff; }
-.chip.selected { background: #111827; color: white; border-color: #111827; }
+/* Inputs & Labels */
+label {
+  display: block;
+  font-weight: 500;
+  font-size: 14px;
+  margin: 10px 0 5px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #1f2937;
+  background: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* Tutor Card Grid */
+.tutor-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  margin-top: 20px;
+}
+
+.tutor-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+  padding: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tutor-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.tutor-photo-wrap {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.tutor-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tutor-info h3 {
+  font-size: 16px;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.tutor-info p {
+  font-size: 13px;
+  color: #475569;
+  margin: 2px 0;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filters input {
+  flex: 1;
+  min-width: 120px;
+}
+
+.filters button {
+  background: #2563eb;
+  border-radius: 8px;
+}
+
+.filters button:hover {
+  background: #1e40af;
+}
