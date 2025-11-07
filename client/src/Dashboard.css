@@ -10,16 +10,23 @@ body {
   overflow-x: hidden;
 }
 
-/* Full-width, modern layout */
+/* Full-width, modern layout - NO MORE CONSTRAINTS! */
 .dashboard {
   width: 100%;
-  max-width: 1200px;
-  margin: 40px auto;
+  margin: 0;
   background: #fff;
-  padding: 40px 60px;
-  border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  padding: 40px 5%; /* Responsive padding based on viewport */
+  min-height: 100vh;
   box-sizing: border-box;
+}
+
+/* Optional: For ultra-wide screens, add some reasonable max-width */
+@media (min-width: 2000px) {
+  .dashboard {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 40px 80px;
+  }
 }
 
 /* Headings */
@@ -34,6 +41,8 @@ h1, h2, h3 {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .sub {
@@ -46,11 +55,13 @@ h1, h2, h3 {
   display: flex;
   gap: 12px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .tabs button {
   flex: 1;
-  padding: 10px 14px;
+  min-width: 150px;
+  padding: 12px 20px;
   border-radius: 8px;
   border: 1px solid #cbd5e1;
   background: #f8fafc;
@@ -81,10 +92,17 @@ h1, h2, h3 {
 .filters input {
   flex: 1;
   min-width: 200px;
-  padding: 10px;
+  padding: 12px;
   border-radius: 8px;
   border: 1px solid #cbd5e1;
   font-size: 14px;
+  box-sizing: border-box;
+}
+
+.filters input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .filters button {
@@ -93,20 +111,43 @@ h1, h2, h3 {
   border-radius: 8px;
   color: white;
   font-weight: 600;
-  padding: 10px 16px;
+  padding: 12px 24px;
   cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 .filters button:hover {
   background: #1e40af;
 }
 
-/* Tutor grid layout */
+/* Tutor grid layout - RESPONSIVE AND FULL-WIDTH */
 .tutor-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
   margin-top: 20px;
+  width: 100%;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  .tutor-grid {
+    grid-template-columns: 1fr; /* Stack on mobile */
+  }
+  
+  .dashboard {
+    padding: 20px 4%;
+  }
+  
+  .tabs button {
+    min-width: 120px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .tutor-grid {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
 }
 
 /* Tutor cards */
@@ -114,7 +155,7 @@ h1, h2, h3 {
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  padding: 16px;
+  padding: 20px;
   background: #fff;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
@@ -124,12 +165,13 @@ h1, h2, h3 {
 
 .tutor-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 .tutor-photo-wrap {
   width: 100px;
   height: 100px;
+  flex-shrink: 0;
   overflow: hidden;
   border-radius: 10px;
 }
@@ -140,9 +182,13 @@ h1, h2, h3 {
   object-fit: cover;
 }
 
+.tutor-info {
+  flex: 1;
+}
+
 .tutor-info h3 {
-  margin: 0;
-  font-size: 16px;
+  margin: 0 0 8px 0;
+  font-size: 18px;
   color: #0f172a;
 }
 
@@ -157,11 +203,18 @@ h1, h2, h3 {
   background: #64748b;
   color: white;
   border: none;
-  padding: 10px 16px;
+  padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s ease;
 }
 
 .logout-btn:hover {
   background: #475569;
+}
+
+/* Tab content wrapper */
+.tab-content {
+  width: 100%;
 }

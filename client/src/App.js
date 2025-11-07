@@ -123,28 +123,31 @@ function App() {
     </div>
   );
 
+  // FIXED: Only wrap auth forms in .App container, not Dashboard
   return (
-    <div className="App">
+    <>
       {!isVerified ? (
-        <>
-          <h1>Welcome to AUC Tutor</h1>
-          {isEmailSent ? (
-            renderVerificationForm()
-          ) : (
-            <>
-              <div className="auth-tabs">
-                <button className={`tab-btn ${authMode === 'register' ? 'active' : ''}`} onClick={() => setAuthMode('register')}>Register</button>
-                <button className={`tab-btn ${authMode === 'login' ? 'active' : ''}`} onClick={() => setAuthMode('login')}>Login</button>
-              </div>
-              {authMode === 'register' ? renderRegistrationForm() : renderLoginForm()}
-            </>
-          )}
-        </>
+        <div className="auth-container">
+          <div className="App">
+            <h1>Welcome to AUC Tutor</h1>
+            {isEmailSent ? (
+              renderVerificationForm()
+            ) : (
+              <>
+                <div className="auth-tabs">
+                  <button className={`tab-btn ${authMode === 'register' ? 'active' : ''}`} onClick={() => setAuthMode('register')}>Register</button>
+                  <button className={`tab-btn ${authMode === 'login' ? 'active' : ''}`} onClick={() => setAuthMode('login')}>Login</button>
+                </div>
+                {authMode === 'register' ? renderRegistrationForm() : renderLoginForm()}
+              </>
+            )}
+            {message && <p className="message">{message}</p>}
+          </div>
+        </div>
       ) : (
         <Dashboard name={name} email={email} onLogout={handleLogout} user={user} />
       )}
-      {message && <p className="message">{message}</p>}
-    </div>
+    </>
   );
 }
 export default App;
