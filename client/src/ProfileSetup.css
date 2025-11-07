@@ -1,0 +1,140 @@
+.profile-setup {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Subject chips */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.chip {
+  padding: 8px 16px;
+  border: 2px solid #cbd5e1;
+  border-radius: 20px;
+  background: white;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chip:hover {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.chip.selected {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: white;
+}
+
+/* Photo upload */
+.form-group input[type="file"] {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.upload-status {
+  color: #2563eb;
+  font-size: 14px;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.photo-preview {
+  margin-top: 12px;
+}
+
+.photo-preview img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 3px solid #e2e8f0;
+}
+
+/* Save button */
+.save-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 24px;
+}
+
+.save-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1e40af, #1e3a8a);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.save-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-setup {
+    padding: 0 16px;
+  }
+  
+  .chips {
+    gap: 6px;
+  }
+  
+  .chip {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
