@@ -33,7 +33,7 @@ Storage: Supabase Storage for profile photos
 ## Database Setup (Supabase)
 
 1. Create a "profiles" table in Supabase SQL Editor:
-
+```
 create table if not exists public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
   role text check (role in ('student','tutor')) not null,
@@ -53,9 +53,9 @@ create index if not exists idx_profiles_hourly_rate on public.profiles(hourly_ra
 create index if not exists idx_profiles_subjects on public.profiles using gin (subjects);
 
 alter table public.profiles enable row level security;
-
+```
 2. Add RLS policies:
-
+```
 create policy "read_tutors_public"
 on public.profiles for select
 to public using (role = 'tutor');
@@ -73,7 +73,7 @@ on public.profiles for update
 to authenticated
 using (auth.uid() = id)
 with check (auth.uid() = id);
-
+```
 3. Create a public storage bucket in Supabase → Storage → Buckets
    - Name: avatars
    - Public access: enabled
@@ -83,21 +83,22 @@ with check (auth.uid() = id);
 ## Environment Variables
 
 Server (.env):
-
+```
 SUPABASE_URL=your_supabase_project_url
 SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 PORT=5000
-
+```
 Client (.env):
-
+```
 REACT_APP_SUPABASE_URL=your_supabase_project_url
 REACT_APP_SUPABASE_ANON_KEY=your_supabase_anon_key
-
+```
 ------------------------------------------------------------
 
 ## Project Structure
 
 digitalentrepreneurship-tutoringmarketplace/
+```
 ├── server/
 │   ├── server.js
 │   └── .env
@@ -113,7 +114,7 @@ digitalentrepreneurship-tutoringmarketplace/
 │   └── .env
 ├── package.json
 └── README.md
-
+```
 ------------------------------------------------------------
 
 ## How It Works
@@ -128,39 +129,39 @@ Tutors include hourly rate, subjects, and bio.
 Students have simpler profiles and can browse tutors.
 
 API Endpoints:
-
+```
 POST /register - Register a new user
 POST /login - Log in existing user
 POST /verify - Verify email with 6-digit code
 POST /api/profile - Create or update a profile
 GET /api/profile/:id - Get a user's profile
 GET /api/tutors - Get all tutor profiles, with optional filters (subject, maxRate)
-
+```
 ------------------------------------------------------------
 
 ## React Components
-
+```
 App.js - Handles registration, login, and verification flow
 Dashboard.js - Main view with "Find Tutors" and "My Profile" tabs
 ProfileSetup.js - Form for creating or updating profile
 TutorList.js - Lists tutors and allows filtering
 TutorCard.js - Displays tutor photo, subjects, and hourly rate
 supabaseClient.js - Frontend Supabase client for uploads
-
+```
 ------------------------------------------------------------
 
 ## Running Locally
 
 1. Install dependencies
-
+```
 npm install
 cd client && npm install
-
+```
 2. Build frontend and start backend
-
+```
 npm run build --prefix client
 node server/server.js
-
+```
 Server runs on http://localhost:5000
 
 ------------------------------------------------------------
